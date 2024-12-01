@@ -11,8 +11,7 @@ fn parse_lists(input: &str) -> IResult<&str, (Vec<u32>, Vec<u32>)> {
 }
 
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let input: String = std::fs::read_to_string(path)?.trim().parse()?;
-    let (mut vl, mut vr): (Vec<u32>, Vec<u32>) = parse::with_nom(&input, parse_lists)?;
+    let (mut vl, mut vr): (Vec<u32>, Vec<u32>) = parse::with_nom(&path, parse_lists)?;
     vl.sort();
     vr.sort();
 
@@ -23,8 +22,7 @@ pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let input: String = std::fs::read_to_string(path)?.trim().parse()?;
-    let (vl, vr): (Vec<u32>, Vec<u32>) = parse::with_nom(&input, parse_lists)?;
+    let (vl, vr): (Vec<u32>, Vec<u32>) = parse::with_nom(&path, parse_lists)?;
 
     let similarity_sum: u32 = vl
         .iter()

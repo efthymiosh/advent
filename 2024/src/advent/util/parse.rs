@@ -1,11 +1,12 @@
 use std::io;
 
 #[allow(dead_code)]
-pub(crate) fn with_nom<F, T>(input: &str, parser: F) -> Result<T, Box<dyn std::error::Error>>
+pub(crate) fn with_nom<F, T>(filepath: &str, parser: F) -> Result<T, Box<dyn std::error::Error>>
 where
     F: Fn(&str) -> nom::IResult<&str, T>,
 {
-    let (remainder, v) = parser(input).map_err(|e| {
+    let input: String = std::fs::read_to_string(filepath)?.trim().parse()?;
+    let (remainder, v) = parser(&input).map_err(|e| {
         io::Error::new(
             io::ErrorKind::InvalidInput,
             format!("Error while parsing input: {}", e.to_string()),
