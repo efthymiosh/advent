@@ -66,6 +66,21 @@ pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let _v: Vec<Vec<u32>> = parse::with_nom(&path, parse_grid)?;
+    let v: Vec<Vec<u32>> = parse::with_nom(&path, parse_grid)?;
+
+    let sum = v
+        .iter()
+        .enumerate()
+        .map(|(x, ve)| {
+            ve.iter()
+                .enumerate()
+                .filter_map(|(y, &e)| if e == 0 { search(&v, x, y, 0) } else { None })
+                .map(|e| e.iter().count())
+                .sum::<usize>()
+        })
+        .sum::<usize>();
+
+    println!("Sum of trailhead scores: {}", sum);
+
     Ok(())
 }
