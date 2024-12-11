@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use crate::advent::util;
 use nom::character::complete::u64;
 use nom::multi::separated_list0;
@@ -8,29 +10,33 @@ fn parse_stones(input: &str) -> IResult<&str, Vec<u64>> {
     Ok((remainder, v))
 }
 
-fn blink(mut v: Vec<u64>, blinks: usize) {
-    for _i in 0..blinks {
-        v = v
-            .iter()
-            .flat_map(|&stone| {
-                if stone == 0 {
-                    return vec![1];
-                }
-                let s = stone.to_string();
-                if s.len() % 2 == 0 {
-                    let (ls, rs) = s.split_at(s.len() / 2);
-                    vec![
-                        u64::from_str_radix(ls, 10).unwrap(),
-                        u64::from_str_radix(rs, 10).unwrap(),
-                    ]
-                } else {
-                    vec![stone * 2024]
-                }
-            })
-            .collect();
-        println!("Performed {} iterations", _i);
+fn memocount(counts: &mut HashMap<(u64, usize), usize>, stone: u64, moves: usize) -> usize {
+    if let Some(res) = counts.get(&(stone, moves)) {
+        return *res;
     }
-    println!("Amount of stones: {}", v.len());
+    if moves == 0 {
+        return 1;
+    }
+    let s = stone.to_string();
+    let res = if stone == 0 {
+        memocount(counts, 1, moves - 1)
+    } else if s.len() % 2 == 0 {
+        let (ls, rs) = s.split_at(s.len() / 2);
+        let l = u64::from_str_radix(ls, 10).unwrap();
+        let r = u64::from_str_radix(rs, 10).unwrap();
+        memocount(counts, l, moves - 1) + memocount(counts, r, moves - 1)
+    } else {
+        memocount(counts, stone * 2024, moves - 1)
+    };
+    counts.insert((stone, moves), res);
+    return res;
+}
+
+fn blink(v: Vec<u64>, blinks: usize) {
+    let mut counts: HashMap<(u64, usize), usize> = HashMap::new();
+
+    let sum = v.iter().map(|stone| memocount(&mut counts, *stone, blinks)).sum::<usize>();
+    println!("Final amount of stones: {}", sum);
 }
 
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
