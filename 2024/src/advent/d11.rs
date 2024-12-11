@@ -10,7 +10,7 @@ fn parse_stones(input: &str) -> IResult<&str, Vec<u64>> {
     Ok((remainder, v))
 }
 
-fn memocount(counts: &mut HashMap<(u64, usize), usize>, stone: u64, moves: usize) -> usize {
+fn memocount(counts: &mut HashMap<(u64, u64), u64>, stone: u64, moves: u64) -> u64 {
     if let Some(res) = counts.get(&(stone, moves)) {
         return *res;
     }
@@ -32,10 +32,10 @@ fn memocount(counts: &mut HashMap<(u64, usize), usize>, stone: u64, moves: usize
     return res;
 }
 
-fn blink(v: Vec<u64>, blinks: usize) {
-    let mut counts: HashMap<(u64, usize), usize> = HashMap::new();
+fn blink(v: Vec<u64>, blinks: u64) {
+    let mut counts: HashMap<(u64, u64), u64> = HashMap::new();
 
-    let sum = v.iter().map(|stone| memocount(&mut counts, *stone, blinks)).sum::<usize>();
+    let sum = v.iter().map(|stone| memocount(&mut counts, *stone, blinks)).sum::<u64>();
     println!("Final amount of stones: {}", sum);
 }
 
