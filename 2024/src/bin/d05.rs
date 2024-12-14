@@ -1,8 +1,10 @@
-use crate::advent::util::parse;
+use advent2024::advent::util;
 use nom::character::complete::u32;
 use nom::multi::separated_list0;
 use nom::sequence::separated_pair;
 use nom::{bytes::complete::tag, IResult};
+
+advent2024::main![pt1,pt2];
 
 fn parse_inputs(input: &str) -> IResult<&str, (Vec<(u32, u32)>, Vec<Vec<u32>>)> {
     let (remainder, pair) = separated_pair(
@@ -14,7 +16,7 @@ fn parse_inputs(input: &str) -> IResult<&str, (Vec<(u32, u32)>, Vec<Vec<u32>>)> 
 }
 
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let (vrules, vlist) = parse::with_nom(&path, parse_inputs)?;
+    let (vrules, vlist) = util::parse::with_nom(&path, parse_inputs)?;
 
     let sum: u32 = vlist
         .iter()
@@ -36,7 +38,7 @@ pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let (vrules, mut vlist) = parse::with_nom(&path, parse_inputs)?;
+    let (vrules, mut vlist) = util::parse::with_nom(&path, parse_inputs)?;
 
     let sum: u32 = vlist
         .iter_mut()

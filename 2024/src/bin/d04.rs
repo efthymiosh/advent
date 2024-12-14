@@ -1,7 +1,9 @@
-use crate::advent::util::parse;
+use advent2024::advent::util;
 use nom::character::complete::alpha1;
 use nom::multi::separated_list0;
 use nom::{bytes::complete::tag, IResult};
+
+advent2024::main![pt1,pt2];
 
 fn parse_grid(input: &str) -> IResult<&str, Vec<Vec<char>>> {
     let (remainder, v) = separated_list0(tag("\n"), alpha1)(input)?;
@@ -27,7 +29,7 @@ fn search(grid: &Vec<Vec<char>>, x: usize, y: usize, dx: isize, dy: isize, rem: 
 }
 
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let v: Vec<Vec<char>> = parse::with_nom(&path, parse_grid)?;
+    let v: Vec<Vec<char>> = util::parse::with_nom(&path, parse_grid)?;
 
     let occurences: u32 = v.iter().enumerate().map(|(x, ve)| {
         ve.iter().enumerate().filter(|(_, &e)| e == 'X').map(|(y, _)|{
@@ -51,7 +53,7 @@ pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
 
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let v: Vec<Vec<char>> = parse::with_nom(&path, parse_grid)?;
+    let v: Vec<Vec<char>> = util::parse::with_nom(&path, parse_grid)?;
 
     let occurences: u32 = v.iter().enumerate().map(|(x, ve)| {
         ve.iter().enumerate().filter(|(_, &e)| e == 'A').filter_map(|(y, _)|{

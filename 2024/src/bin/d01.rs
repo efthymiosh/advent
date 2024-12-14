@@ -1,4 +1,7 @@
-use crate::advent::util::parse;
+use advent2024::advent::util;
+
+advent2024::main![pt1,pt2];
+
 use nom::{
     bytes::complete::tag, character::complete::u32, multi::separated_list0,
     sequence::separated_pair, IResult,
@@ -11,7 +14,7 @@ fn parse_lists(input: &str) -> IResult<&str, (Vec<u32>, Vec<u32>)> {
 }
 
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let (mut vl, mut vr): (Vec<u32>, Vec<u32>) = parse::with_nom(&path, parse_lists)?;
+    let (mut vl, mut vr): (Vec<u32>, Vec<u32>) = util::parse::with_nom(&path, parse_lists)?;
     vl.sort();
     vr.sort();
 
@@ -22,7 +25,7 @@ pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let (vl, vr): (Vec<u32>, Vec<u32>) = parse::with_nom(&path, parse_lists)?;
+    let (vl, vr): (Vec<u32>, Vec<u32>) = util::parse::with_nom(&path, parse_lists)?;
 
     let similarity_sum: u32 = vl
         .iter()

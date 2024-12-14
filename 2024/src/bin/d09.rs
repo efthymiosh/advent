@@ -1,5 +1,7 @@
-use crate::advent::util;
+use advent2024::advent::util;
 use nom::{character::complete::anychar, multi::many1, IResult};
+
+advent2024::main![pt1,pt2];
 
 fn parse(input: &str) -> IResult<&str, Vec<Option<u64>>> {
     let (remainder, s) = many1(anychar)(input)?;

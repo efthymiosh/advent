@@ -1,7 +1,7 @@
 use std::io;
 
 #[allow(dead_code)]
-pub(crate) fn with_nom<F, T>(filepath: &str, parser: F) -> Result<T, Box<dyn std::error::Error>>
+pub fn with_nom<F, T>(filepath: &str, parser: F) -> Result<T, Box<dyn std::error::Error>>
 where
     F: Fn(&str) -> nom::IResult<&str, T>,
 {

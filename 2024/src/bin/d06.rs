@@ -1,10 +1,12 @@
-use crate::advent::util::parse;
+use advent2024::advent::util;
 use nom::{
     bytes::complete::tag,
     character::complete::none_of,
     multi::{many1, separated_list0},
     IResult,
 };
+
+advent2024::main![pt1,pt2];
 
 fn parse_grid(input: &str) -> IResult<&str, Vec<Vec<char>>> {
     let (remainder, v): (&str, Vec<Vec<char>>) =
@@ -29,7 +31,7 @@ fn hit_obstacle(x: isize, y: isize, dx: isize, dy: isize) -> (isize, isize, isiz
 }
 
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let mut v: Vec<Vec<char>> = parse::with_nom(&path, parse_grid)?;
+    let mut v: Vec<Vec<char>> = util::parse::with_nom(&path, parse_grid)?;
     let (x, y) = v
         .iter()
         .enumerate()
@@ -61,7 +63,7 @@ pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let mut v: Vec<Vec<char>> = parse::with_nom(&path, parse_grid)?;
+    let mut v: Vec<Vec<char>> = util::parse::with_nom(&path, parse_grid)?;
     let (initx, inity) = v
         .iter()
         .enumerate()

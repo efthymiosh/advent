@@ -1,6 +1,6 @@
 use std::collections::{HashMap, HashSet};
 
-use crate::advent::util::{self, parse};
+use advent2024::advent::util;
 use nom::{
     bytes::complete::tag,
     character::complete::none_of,
@@ -10,13 +10,15 @@ use nom::{
 
 use itertools::Itertools;
 
+advent2024::main![pt1,pt2];
+
 fn parse_grid(input: &str) -> IResult<&str, Vec<Vec<char>>> {
     let (remainder, v) = separated_list0(tag("\n"), many1(none_of("\n")))(input)?;
     Ok((remainder, v))
 }
 
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let mut grid: Vec<Vec<char>> = parse::with_nom(&path, parse_grid)?;
+    let mut grid: Vec<Vec<char>> = util::parse::with_nom(&path, parse_grid)?;
 
     let mut antennas: HashMap<char, Vec<(isize, isize)>> = HashMap::new();
     for (x, ve) in grid.iter_mut().enumerate() {
@@ -54,7 +56,7 @@ pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let mut grid: Vec<Vec<char>> = parse::with_nom(&path, parse_grid)?;
+    let mut grid: Vec<Vec<char>> = util::parse::with_nom(&path, parse_grid)?;
 
     let mut antennas: HashMap<char, Vec<(isize, isize)>> = HashMap::new();
     for (x, ve) in grid.iter_mut().enumerate() {

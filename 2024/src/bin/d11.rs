@@ -1,9 +1,11 @@
 use std::collections::HashMap;
 
-use crate::advent::util;
+use advent2024::advent::util;
 use nom::character::complete::u64;
 use nom::multi::separated_list0;
 use nom::{bytes::complete::tag, IResult};
+
+advent2024::main![pt1,pt2];
 
 fn parse_stones(input: &str) -> IResult<&str, Vec<u64>> {
     let (remainder, v) = separated_list0(tag(" "), u64)(input)?;

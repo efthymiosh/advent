@@ -1,8 +1,10 @@
-use crate::advent::util::parse;
+use advent2024::advent::util;
 use nom::{
     bytes::complete::tag, character::complete::u64, multi::separated_list0,
     sequence::separated_pair, IResult,
 };
+
+advent2024::main![pt1,pt2];
 
 fn parse_equations(input: &str) -> IResult<&str, Vec<(u64, Vec<u64>)>> {
     let (remainder, v) = separated_list0(
@@ -23,7 +25,7 @@ fn matchop(sum: u64, partial: u64, ve: &[u64]) -> bool {
 }
 
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let v: Vec<(u64, Vec<u64>)> = parse::with_nom(&path, parse_equations)?;
+    let v: Vec<(u64, Vec<u64>)> = util::parse::with_nom(&path, parse_equations)?;
 
     let sum = v
         .iter()
@@ -58,7 +60,7 @@ fn matchop2(sum: u64, partial: u64, ve: &[u64]) -> bool {
 }
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let v: Vec<(u64, Vec<u64>)> = parse::with_nom(&path, parse_equations)?;
+    let v: Vec<(u64, Vec<u64>)> = util::parse::with_nom(&path, parse_equations)?;
 
     let sum = v
         .iter()

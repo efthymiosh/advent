@@ -1,8 +1,10 @@
-use crate::advent::util::parse;
+use advent2024::advent::util;
 use itertools::Itertools;
 use nom::character::complete::digit0;
 use nom::multi::separated_list0;
 use nom::{bytes::complete::tag, IResult};
+
+advent2024::main![pt1,pt2];
 
 fn parse_grid(input: &str) -> IResult<&str, Vec<Vec<u32>>> {
     let (remainder, v) = separated_list0(tag("\n"), digit0)(input)?;
@@ -46,7 +48,7 @@ fn search(grid: &Vec<Vec<u32>>, x: usize, y: usize, item: u32) -> Option<Vec<(us
 }
 
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let v: Vec<Vec<u32>> = parse::with_nom(&path, parse_grid)?;
+    let v: Vec<Vec<u32>> = util::parse::with_nom(&path, parse_grid)?;
 
     let sum = v
         .iter()
@@ -66,7 +68,7 @@ pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let v: Vec<Vec<u32>> = parse::with_nom(&path, parse_grid)?;
+    let v: Vec<Vec<u32>> = util::parse::with_nom(&path, parse_grid)?;
 
     let sum = v
         .iter()

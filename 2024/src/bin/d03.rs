@@ -1,10 +1,12 @@
-use crate::advent::util::parse;
+use advent2024::advent::util;
 use nom::sequence::tuple;
 use nom::{
     bytes::complete::tag,
     character::complete::u32,
     IResult,
 };
+
+advent2024::main![pt1,pt2];
 
 fn parse_instructions(input: &str) -> IResult<&str, Vec<(u32, u32)>> {
     let mut v: Vec<(u32, u32)> = vec![];
@@ -48,7 +50,7 @@ fn parse_instructions_pt2(input: &str) -> IResult<&str, Vec<(u32, u32)>> {
 }
 
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let v: Vec<(u32, u32)> = parse::with_nom(&path, parse_instructions)?;
+    let v: Vec<(u32, u32)> = util::parse::with_nom(&path, parse_instructions)?;
 
     let sum_mul = v.iter().fold(0, |acc, &(a, b)| acc + a * b);
     println!("Sum of multiplications: {}", sum_mul);
@@ -56,7 +58,7 @@ pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let v: Vec<(u32, u32)> = parse::with_nom(&path, parse_instructions_pt2)?;
+    let v: Vec<(u32, u32)> = util::parse::with_nom(&path, parse_instructions_pt2)?;
 
     let sum_mul = v.iter().fold(0, |acc, &(a, b)| acc + a * b);
     println!("Sum of multiplications: {}", sum_mul);

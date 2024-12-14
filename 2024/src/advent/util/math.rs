@@ -1,7 +1,7 @@
 use std::ops::{Div, Rem};
 
 #[allow(dead_code)]
-pub(crate) fn gcd(u: i64, v: i64) -> i64 {
+pub fn gcd(u: i64, v: i64) -> i64 {
     // `wrapping_abs` gives a number's absolute value, unless that's 2³¹. 2³¹
     // won't fit in `i64`, so it gives -2³¹ instead.
     let mut v = v.wrapping_abs() as u64;
@@ -37,7 +37,7 @@ pub(crate) fn gcd(u: i64, v: i64) -> i64 {
 }
 
 #[allow(dead_code)]
-pub(crate) fn lcm(u: i64, v: i64) -> i64 {
+pub fn lcm(u: i64, v: i64) -> i64 {
     if u > v {
         (u / gcd(u, v)) * v
     } else {
@@ -46,7 +46,7 @@ pub(crate) fn lcm(u: i64, v: i64) -> i64 {
 }
 
 #[allow(dead_code)]
-pub(crate) fn polygon_area(vertices: &[(i64, i64)]) -> f64 {
+pub fn polygon_area(vertices: &[(i64, i64)]) -> f64 {
     let n = vertices.len();
     let mut sum = 0.0;
 
@@ -60,7 +60,7 @@ pub(crate) fn polygon_area(vertices: &[(i64, i64)]) -> f64 {
 }
 
 #[allow(dead_code)]
-pub(crate) fn picks_theorem(area: f64, vertices: &[(i64, i64)]) -> u64 {
+pub fn picks_theorem(area: f64, vertices: &[(i64, i64)]) -> u64 {
     let boundary_points = vertices.len() as u64;
     let interior_points = area - (boundary_points / 2) as f64 + 1.0;
 
@@ -68,7 +68,7 @@ pub(crate) fn picks_theorem(area: f64, vertices: &[(i64, i64)]) -> u64 {
 }
 
 #[allow(dead_code)]
-pub(crate) fn div_rem<T>(first: T, second: T) -> (T, T)
+pub fn div_rem<T>(first: T, second: T) -> (T, T)
 where
     T: Div<Output = T> + Rem<Output = T> + Copy,
 {

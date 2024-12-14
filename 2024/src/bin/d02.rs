@@ -1,5 +1,7 @@
-use crate::advent::util::parse;
+use advent2024::advent::util;
 use nom::{bytes::complete::tag, character::complete::u32, multi::separated_list0, IResult};
+
+advent2024::main![pt1,pt2];
 
 fn parse_reports(input: &str) -> IResult<&str, Vec<Vec<u32>>> {
     let (remainder, v) = separated_list0(tag("\n"), separated_list0(tag(" "), u32))(input)?;
@@ -13,7 +15,7 @@ fn is_valid_report(ve: &Vec<u32>) -> bool {
 }
 
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let v: Vec<Vec<u32>> = parse::with_nom(&path, parse_reports)?;
+    let v: Vec<Vec<u32>> = util::parse::with_nom(&path, parse_reports)?;
 
     let amt_safe = v.iter().filter(|ve| is_valid_report(ve)).count();
     println!("Safe reports: {}", amt_safe);
@@ -21,7 +23,7 @@ pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let v: Vec<Vec<u32>> = parse::with_nom(&path, parse_reports)?;
+    let v: Vec<Vec<u32>> = util::parse::with_nom(&path, parse_reports)?;
 
     let amt_safe = v
         .iter()

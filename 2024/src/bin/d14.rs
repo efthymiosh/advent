@@ -1,10 +1,12 @@
 use std::collections::HashSet;
 
-use crate::advent::util;
+use advent2024::advent::util;
 use nom::character::complete::i64;
 use nom::multi::separated_list0;
 use nom::sequence::{preceded, separated_pair};
 use nom::{bytes::complete::tag, IResult};
+
+advent2024::main![pt1,pt2];
 
 #[derive(Debug)]
 struct Robot {

@@ -1,5 +1,5 @@
 #[allow(dead_code)]
-pub(crate) fn print<T>(grid: &[Vec<T>], spacing: usize, dot: T)
+pub fn print<T>(grid: &[Vec<T>], spacing: usize, dot: T)
 where
     T: Sized + Eq + PartialEq + std::fmt::Display,
 {
