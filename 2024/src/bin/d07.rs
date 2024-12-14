@@ -1,4 +1,4 @@
-use advent2024::advent::util;
+use util;
 use nom::{
     bytes::complete::tag, character::complete::u64, multi::separated_list0,
     sequence::separated_pair, IResult,

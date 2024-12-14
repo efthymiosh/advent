@@ -1,4 +1,4 @@
-use advent2024::advent::util;
+use util;
 use nom::{bytes::complete::tag, character::complete::u32, multi::separated_list0, IResult};
 
 advent2024::main![pt1,pt2];

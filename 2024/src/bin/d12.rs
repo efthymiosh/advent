@@ -2,7 +2,7 @@ use nom::character::complete::none_of;
 use nom::multi::{many1, separated_list0};
 use nom::{bytes::complete::tag, IResult};
 
-use advent2024::advent::util;
+use util;
 
 advent2024::main![pt1,pt2];
 

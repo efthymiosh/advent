@@ -1,4 +1,4 @@
-use advent2024::advent::util;
+use util;
 
 advent2024::main![pt1,pt2];
 

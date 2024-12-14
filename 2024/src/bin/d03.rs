@@ -1,4 +1,4 @@
-use advent2024::advent::util;
+use util;
 use nom::sequence::tuple;
 use nom::{
     bytes::complete::tag,

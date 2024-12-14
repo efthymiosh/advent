@@ -1,4 +1,4 @@
-use advent2024::advent::util;
+use util;
 use nom::{character::complete::anychar, multi::many1, IResult};
 
 advent2024::main![pt1,pt2];

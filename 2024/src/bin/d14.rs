@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 
-use advent2024::advent::util;
+use util;
 use nom::character::complete::i64;
 use nom::multi::separated_list0;
 use nom::sequence::{preceded, separated_pair};

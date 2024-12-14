@@ -1,5 +1,3 @@
-pub mod advent;
-
 #[macro_export]
 macro_rules! main {
     ( $pt1:expr, $pt2:expr ) => {

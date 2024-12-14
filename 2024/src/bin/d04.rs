@@ -1,4 +1,4 @@
-use advent2024::advent::util;
+use util;
 use nom::character::complete::alpha1;
 use nom::multi::separated_list0;
 use nom::{bytes::complete::tag, IResult};

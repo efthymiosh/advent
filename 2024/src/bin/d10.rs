@@ -1,4 +1,4 @@
-use advent2024::advent::util;
+use util;
 use itertools::Itertools;
 use nom::character::complete::digit0;
 use nom::multi::separated_list0;

@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use advent2024::advent::util;
+use util;
 use nom::character::complete::u64;
 use nom::multi::separated_list0;
 use nom::{bytes::complete::tag, IResult};
