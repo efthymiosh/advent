@@ -1,10 +1,9 @@
 use nom::character::complete::none_of;
 use nom::multi::{many1, separated_list0};
 use nom::{bytes::complete::tag, IResult};
-
 use util;
 
-advent2024::main![pt1,pt2];
+util::main![pt1, pt2];
 
 fn parse_grid(input: &str) -> IResult<&str, Vec<Vec<char>>> {
     let (remainder, v) = separated_list0(tag("\n"), many1(none_of("\n")))(input)?;

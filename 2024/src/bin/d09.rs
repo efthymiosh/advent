@@ -1,7 +1,7 @@
-use util;
 use nom::{character::complete::anychar, multi::many1, IResult};
+use util;
 
-advent2024::main![pt1,pt2];
+util::main![pt1, pt2];
 
 fn parse(input: &str) -> IResult<&str, Vec<Option<u64>>> {
     let (remainder, s) = many1(anychar)(input)?;

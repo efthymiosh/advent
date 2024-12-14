@@ -1,10 +1,10 @@
-use util;
 use itertools::Itertools;
 use nom::character::complete::digit0;
 use nom::multi::separated_list0;
 use nom::{bytes::complete::tag, IResult};
+use util;
 
-advent2024::main![pt1,pt2];
+util::main![pt1, pt2];
 
 fn parse_grid(input: &str) -> IResult<&str, Vec<Vec<u32>>> {
     let (remainder, v) = separated_list0(tag("\n"), digit0)(input)?;

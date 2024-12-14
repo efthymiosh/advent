@@ -1,12 +1,8 @@
-use util;
 use nom::sequence::tuple;
-use nom::{
-    bytes::complete::tag,
-    character::complete::u32,
-    IResult,
-};
+use nom::{bytes::complete::tag, character::complete::u32, IResult};
+use util;
 
-advent2024::main![pt1,pt2];
+util::main![pt1, pt2];
 
 fn parse_instructions(input: &str) -> IResult<&str, Vec<(u32, u32)>> {
     let mut v: Vec<(u32, u32)> = vec![];

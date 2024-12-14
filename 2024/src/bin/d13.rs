@@ -1,10 +1,10 @@
-use util;
 use nom::character::complete::i64;
 use nom::multi::separated_list0;
 use nom::sequence::{delimited, pair, preceded, tuple};
 use nom::{bytes::complete::tag, IResult};
+use util;
 
-advent2024::main![pt1,pt2];
+util::main![pt1, pt2];
 
 #[derive(Debug)]
 struct ClawMachine {

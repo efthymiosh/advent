@@ -1,7 +1,7 @@
-use util;
 use nom::{bytes::complete::tag, character::complete::u32, multi::separated_list0, IResult};
+use util;
 
-advent2024::main![pt1,pt2];
+util::main![pt1, pt2];
 
 fn parse_reports(input: &str) -> IResult<&str, Vec<Vec<u32>>> {
     let (remainder, v) = separated_list0(tag("\n"), separated_list0(tag(" "), u32))(input)?;

@@ -1,10 +1,10 @@
-use util;
 use nom::{
     bytes::complete::tag, character::complete::u64, multi::separated_list0,
     sequence::separated_pair, IResult,
 };
+use util;
 
-advent2024::main![pt1,pt2];
+util::main![pt1, pt2];
 
 fn parse_equations(input: &str) -> IResult<&str, Vec<(u64, Vec<u64>)>> {
     let (remainder, v) = separated_list0(

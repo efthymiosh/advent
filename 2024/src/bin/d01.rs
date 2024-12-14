@@ -1,6 +1,6 @@
 use util;
 
-advent2024::main![pt1,pt2];
+util::main![pt1, pt2];
 
 use nom::{
     bytes::complete::tag, character::complete::u32, multi::separated_list0,

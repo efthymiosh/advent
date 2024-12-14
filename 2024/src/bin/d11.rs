@@ -1,11 +1,11 @@
 use std::collections::HashMap;
 
-use util;
 use nom::character::complete::u64;
 use nom::multi::separated_list0;
 use nom::{bytes::complete::tag, IResult};
+use util;
 
-advent2024::main![pt1,pt2];
+util::main![pt1, pt2];
 
 fn parse_stones(input: &str) -> IResult<&str, Vec<u64>> {
     let (remainder, v) = separated_list0(tag(" "), u64)(input)?;
@@ -37,7 +37,10 @@ fn memocount(counts: &mut HashMap<(u64, u64), u64>, stone: u64, moves: u64) -> u
 fn blink(v: Vec<u64>, blinks: u64) {
     let mut counts: HashMap<(u64, u64), u64> = HashMap::new();
 
-    let sum = v.iter().map(|stone| memocount(&mut counts, *stone, blinks)).sum::<u64>();
+    let sum = v
+        .iter()
+        .map(|stone| memocount(&mut counts, *stone, blinks))
+        .sum::<u64>();
     println!("Final amount of stones: {}", sum);
 }
 

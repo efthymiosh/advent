@@ -1,10 +1,10 @@
-use util;
 use nom::character::complete::u32;
 use nom::multi::separated_list0;
 use nom::sequence::separated_pair;
 use nom::{bytes::complete::tag, IResult};
+use util;
 
-advent2024::main![pt1,pt2];
+util::main![pt1, pt2];
 
 fn parse_inputs(input: &str) -> IResult<&str, (Vec<(u32, u32)>, Vec<Vec<u32>>)> {
     let (remainder, pair) = separated_pair(
@@ -61,8 +61,7 @@ pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
             }
             if corrected {
                 return vec[vec.len() / 2];
-            }
-            else {
+            } else {
                 return 0;
             }
         })
