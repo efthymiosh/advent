@@ -1,7 +1,9 @@
-use super::util;
+use util;
+
+util::main![pt1, pt2];
 
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let lines = util::parse_in_lines(&path)?;
+    let lines = util::parse::in_lines(&path)?;
     let mut numbers = Vec::new();
     for line in lines {
         let string: String = line.parse()?;
@@ -13,7 +15,7 @@ pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let lines = util::parse_in_lines(&path)?;
+    let lines = util::parse::in_lines(&path)?;
     let mut numbers = Vec::new();
     let numstrings: Vec<(&str, u32)> = Vec::from([
         ("one", 1),

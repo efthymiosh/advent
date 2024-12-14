@@ -7,7 +7,9 @@ use nom::multi::{many1, separated_list1};
 use nom::sequence::separated_pair;
 use nom::IResult;
 
-use super::util;
+use util;
+
+util::main![pt1, pt2];
 
 #[derive(Debug, PartialEq, Clone, Copy, Eq)]
 enum Signal {

@@ -6,6 +6,8 @@ use nom::IResult;
 
 use nalgebra::{matrix, vector};
 
+util::main![pt1, pt2];
+
 #[derive(Debug, Clone)]
 struct Hailstone {
     p: (f64, f64, f64),

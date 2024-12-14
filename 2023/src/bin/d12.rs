@@ -8,7 +8,9 @@ use nom::multi::separated_list1;
 use nom::sequence::separated_pair;
 use nom::IResult;
 
-use super::util;
+use util;
+
+util::main![pt1, pt2];
 
 #[derive(Debug)]
 struct Record {
@@ -84,7 +86,7 @@ fn parse_line(input: &str) -> IResult<&str, Record> {
 }
 
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let lines = util::parse_in_lines(&path)?;
+    let lines = util::parse::in_lines(&path)?;
 
     let records: Vec<Record> = lines
         .into_iter()
@@ -99,7 +101,7 @@ pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let lines = util::parse_in_lines(&path)?;
+    let lines = util::parse::in_lines(&path)?;
 
     let records: Vec<Record> = lines
         .into_iter()

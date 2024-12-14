@@ -1,4 +1,6 @@
-use super::util;
+use util;
+
+util::main![pt1, pt2];
 
 use nom::branch::alt;
 use nom::bytes::complete::tag;
@@ -79,7 +81,7 @@ fn parse_color(input: &str) -> IResult<&str, Color> {
 }
 
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let lines = util::parse_in_lines(&path)?;
+    let lines = util::parse::in_lines(&path)?;
     let bag = Sample {
         red: 12,
         green: 13,
@@ -100,7 +102,7 @@ pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let lines = util::parse_in_lines(&path)?;
+    let lines = util::parse::in_lines(&path)?;
     let mut sum = 0;
     for line in lines {
         let game = parse_line(&line).unwrap();

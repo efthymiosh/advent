@@ -1,4 +1,6 @@
-use super::util;
+use util;
+
+util::main![pt1, pt2];
 
 fn get_valid_neighbors(grid: &[&mut [char]], (x,y): (usize, usize)) -> Vec<(usize,usize)> {
     let mut valid_paths = Vec::new();
@@ -98,7 +100,7 @@ fn discover_loop(grid: &Vec<&mut [char]>, mark: &mut Vec<&mut [i64]>, vertices: 
 }
 
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let mut lines = util::parse_in_lines(&path)?.peekable();
+    let mut lines = util::parse::in_lines(&path)?.peekable();
 
     let size = lines.peek().ok_or("Bad input file")?.len();
 
@@ -137,7 +139,7 @@ pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let mut lines = util::parse_in_lines(&path)?.peekable();
+    let mut lines = util::parse::in_lines(&path)?.peekable();
 
     let size = lines.peek().ok_or("Bad input file")?.len();
 

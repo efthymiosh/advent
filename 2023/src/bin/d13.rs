@@ -5,6 +5,8 @@ use nom::{
     IResult,
 };
 
+util::main![pt1, pt2];
+
 #[derive(Debug)]
 struct Grid {
     columns: Vec<u64>,

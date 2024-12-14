@@ -6,6 +6,8 @@ use nom::multi::separated_list1;
 use nom::sequence::{delimited, tuple};
 use nom::IResult;
 
+util::main![pt1, pt2];
+
 #[derive(Debug)]
 enum Op {
     GT,

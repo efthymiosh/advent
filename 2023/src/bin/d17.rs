@@ -1,6 +1,8 @@
 use std::collections::{HashSet, BinaryHeap};
 
-use super::util;
+use util;
+
+util::main![pt1, pt2];
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 struct State {
@@ -67,7 +69,7 @@ fn shortest_path(grid: &mut [&mut [u32]], minstraight: usize, maxstraight: usize
 
 
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let mut lines = util::parse_in_lines(&path)?.peekable();
+    let mut lines = util::parse::in_lines(&path)?.peekable();
 
     let size = lines.peek().ok_or("Bad input file")?.len();
 
@@ -86,7 +88,7 @@ pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let mut lines = util::parse_in_lines(&path)?.peekable();
+    let mut lines = util::parse::in_lines(&path)?.peekable();
     let size = lines.peek().ok_or("Bad input file")?.len();
 
     let mut grid_raw = vec![0; size * size];

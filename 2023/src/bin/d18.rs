@@ -1,4 +1,6 @@
-use super::util;
+use util;
+
+util::main![pt1, pt2];
 
 use nom::bytes::complete::tag;
 use nom::character::complete::{alphanumeric0, one_of, i64};
@@ -22,7 +24,7 @@ fn parse_moves(input: &str) -> IResult<&str, Move> {
 }
 
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let lines = util::parse_in_lines(&path)?;
+    let lines = util::parse::in_lines(&path)?;
     let mut edges = Vec::new();
     let mut state = (0, 0);
     for line in lines {
@@ -60,7 +62,7 @@ fn pt2extract(m: Move) -> Move {
 }
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let lines = util::parse_in_lines(&path)?;
+    let lines = util::parse::in_lines(&path)?;
     let mut edges = Vec::new();
     let mut state = (0, 0);
     for line in lines {

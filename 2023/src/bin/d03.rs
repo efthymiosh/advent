@@ -1,6 +1,8 @@
 use std::collections::HashSet;
 
-use super::util;
+use util;
+
+util::main![pt1, pt2];
 
 const MARK: char = 'm';
 const EMPTY: char = '.';
@@ -29,7 +31,7 @@ fn is_part(grid: &mut [&mut [char]], line: usize, mut start: usize, mut end: usi
 }
 
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let mut lines = util::parse_in_lines(&path)?.peekable();
+    let mut lines = util::parse::in_lines(&path)?.peekable();
     let mut sum = 0;
 
     let size = lines.peek().ok_or("Bad input file")?.len();
@@ -106,7 +108,7 @@ fn find_gears(grid: &mut [&mut [char]], i: usize, j: usize) -> Option<u32> {
 }
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let mut lines = util::parse_in_lines(&path)?.peekable();
+    let mut lines = util::parse::in_lines(&path)?.peekable();
     let mut sum = 0;
 
     let size = lines.peek().ok_or("Bad input file")?.len();

@@ -5,6 +5,8 @@ use nom::multi::separated_list1;
 use nom::sequence::pair;
 use nom::IResult;
 
+util::main![pt1, pt2];
+
 fn parse_input(input: &str) -> IResult<&str, Vec<String>> {
     let (rem, v) = separated_list1(tag(","), many1(none_of(",")))(input)?;
     Ok((rem, v.iter().map(|vc| vc.iter().collect()).collect()))

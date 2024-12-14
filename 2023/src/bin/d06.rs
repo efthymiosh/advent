@@ -4,6 +4,8 @@ use nom::multi::{many1, separated_list0};
 use nom::sequence::tuple;
 use nom::IResult;
 
+util::main![pt1, pt2];
+
 fn parse<'a>(what: &str, input: &'a str) -> IResult<&'a str, Vec<u64>> {
     let (remainder, _) = tuple((tag(what), many1(tag(" "))))(input)?;
     let (remainder, v) = separated_list0(many1(tag(" ")), u64)(remainder)?;

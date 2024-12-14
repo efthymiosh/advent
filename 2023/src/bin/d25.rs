@@ -6,6 +6,8 @@ use nom::multi::separated_list1;
 use nom::sequence::separated_pair;
 use nom::IResult;
 
+util::main![pt1, pt2];
+
 #[derive(Debug, PartialEq, Clone, Eq, PartialOrd, Ord)]
 struct Node {
     id: String,

@@ -1,6 +1,8 @@
 use std::collections::{HashMap, HashSet};
 
-use super::util;
+use util;
+
+util::main![pt1, pt2];
 
 use nom::bytes::complete::tag;
 use nom::character::complete::u32;
@@ -52,7 +54,7 @@ fn parse_line(input: &str) -> Result<Card, Box<dyn std::error::Error + '_>> {
 }
 
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let lines = util::parse_in_lines(&path)?;
+    let lines = util::parse::in_lines(&path)?;
     let mut sum = 0;
     for line in lines {
         let card = parse_line(&line).unwrap();
@@ -67,7 +69,7 @@ pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let lines = util::parse_in_lines(&path)?;
+    let lines = util::parse::in_lines(&path)?;
     let mut hm: HashMap<u32, (usize, u32)> = HashMap::new();
     let mut sum = 0;
     for line in lines {

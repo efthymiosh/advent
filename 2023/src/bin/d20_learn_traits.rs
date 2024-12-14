@@ -10,6 +10,8 @@ use nom::multi::{many1, separated_list1};
 use nom::sequence::separated_pair;
 use nom::IResult;
 
+util::main![pt1, pt2];
+
 type ModulePtr = Rc<RefCell<Box<dyn Module>>>;
 
 #[derive(Debug, PartialEq, Clone, Copy, Eq)]

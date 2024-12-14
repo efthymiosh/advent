@@ -1,7 +1,9 @@
 use std::cmp::Ordering;
 use std::collections::HashMap;
 
-use super::util;
+use util;
+
+util::main![pt1, pt2];
 
 use nom::bytes::complete::tag;
 use nom::character::complete::{alphanumeric1, u32};
@@ -156,7 +158,7 @@ fn parse(input: &str, joker: bool) -> Result<Hand, Box<dyn std::error::Error + '
 }
 
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let lines = util::parse_in_lines(&path)?;
+    let lines = util::parse::in_lines(&path)?;
     let mut v = Vec::new();
     for line in lines {
         let hand = parse(&line, false).unwrap();
@@ -175,7 +177,7 @@ pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let lines = util::parse_in_lines(&path)?;
+    let lines = util::parse::in_lines(&path)?;
     let mut v = Vec::new();
     for line in lines {
         let hand = parse(&line, true).unwrap();

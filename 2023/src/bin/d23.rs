@@ -1,7 +1,9 @@
 use std::collections::{HashMap, HashSet, VecDeque};
 use std::hash::Hash;
 
-use super::util;
+use util;
+
+util::main![pt1, pt2];
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 struct State {
@@ -94,7 +96,7 @@ fn longest_path_slopes(grid: &mut [&mut [char]]) -> u32 {
 }
 
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let mut lines = util::parse_in_lines(&path)?.peekable();
+    let mut lines = util::parse::in_lines(&path)?.peekable();
 
     let size = lines.peek().ok_or("Bad input file")?.len();
 
@@ -144,7 +146,7 @@ fn longest_path_rec(
 }
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let mut lines = util::parse_in_lines(&path)?.peekable();
+    let mut lines = util::parse::in_lines(&path)?.peekable();
 
     let size = lines.peek().ok_or("Bad input file")?.len();
 

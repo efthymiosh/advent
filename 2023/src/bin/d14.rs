@@ -1,6 +1,8 @@
 use std::collections::HashMap;
 
-use super::util;
+use util;
+
+util::main![pt1, pt2];
 
 enum Direction {
     North,
@@ -115,7 +117,7 @@ fn calc_load(grid: &[&mut [char]]) -> usize {
 }
 
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let mut lines = util::parse_in_lines(&path)?.peekable();
+    let mut lines = util::parse::in_lines(&path)?.peekable();
 
     let size = lines.peek().ok_or("Bad input file")?.len();
 
@@ -141,7 +143,7 @@ fn hash(v: &[&mut [char]]) -> String {
 }
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let mut lines = util::parse_in_lines(&path)?.peekable();
+    let mut lines = util::parse::in_lines(&path)?.peekable();
 
     let size = lines.peek().ok_or("Bad input file")?.len();
 

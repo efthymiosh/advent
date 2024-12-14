@@ -8,6 +8,8 @@ use std::cmp::Ordering;
 use std::collections::HashMap;
 use std::fmt::{Debug, Display};
 
+util::main![pt1, pt2];
+
 #[derive(Debug)]
 struct Range<T>
 where

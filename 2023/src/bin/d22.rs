@@ -6,7 +6,9 @@ use std::cmp::Ordering;
 use std::collections::{HashMap, HashSet, VecDeque};
 
 #[allow(unused_imports)]
-use super::util;
+use util;
+
+util::main![pt1, pt2];
 
 #[derive(Debug, PartialEq, Eq)]
 struct Block {

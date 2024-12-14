@@ -1,6 +1,8 @@
 use std::collections::HashSet;
 
-use super::util;
+use util;
+
+util::main![pt1, pt2];
 
 fn take_step(grid: &Vec<&mut [char]>, stepcount: usize, pos: (isize, isize), endpos: &mut Vec<(usize, usize)>, visited: &mut HashSet<(isize, isize, usize)>, maxsteps: usize) {
     let ipos = (
@@ -35,7 +37,7 @@ fn take_step(grid: &Vec<&mut [char]>, stepcount: usize, pos: (isize, isize), end
 }
 
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let mut lines = util::parse_in_lines(&path)?.peekable();
+    let mut lines = util::parse::in_lines(&path)?.peekable();
 
     let size = lines.peek().ok_or("Bad input file")?.len();
 
@@ -63,7 +65,7 @@ pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let mut lines = util::parse_in_lines(&path)?.peekable();
+    let mut lines = util::parse::in_lines(&path)?.peekable();
 
     let size = lines.peek().ok_or("Bad input file")?.len();
 

@@ -3,6 +3,8 @@ use nom::character::complete::i64;
 use nom::multi::separated_list1;
 use nom::IResult;
 
+util::main![pt1, pt2];
+
 fn parse_sequence(input: &str) -> IResult<&str, Vec<i64>> {
     let (rem, ret) = separated_list1(tag(" "), i64)(input)?;
     let (rem, _) = tag("\n")(rem)?;

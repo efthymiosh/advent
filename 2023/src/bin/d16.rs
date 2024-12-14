@@ -1,6 +1,8 @@
 use std::fmt::Display;
 
-use super::util;
+use util;
+
+util::main![pt1, pt2];
 
 bitflags::bitflags! {
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
@@ -87,7 +89,7 @@ fn energize(grid: &mut Vec<&mut [Point]>, p: (isize, isize), to: LightDirections
     }
 }
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let mut lines = util::parse_in_lines(&path)?.peekable();
+    let mut lines = util::parse::in_lines(&path)?.peekable();
     let size = lines.peek().ok_or("Bad input file")?.len();
     let mut grid_raw = vec![
         Point {
@@ -111,7 +113,7 @@ pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
 }
 
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
-    let mut lines = util::parse_in_lines(&path)?.peekable();
+    let mut lines = util::parse::in_lines(&path)?.peekable();
     let size = lines.peek().ok_or("Bad input file")?.len();
     let mut grid_raw = vec![
         Point {
