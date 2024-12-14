@@ -1,3 +1,5 @@
+use std::ops::{Div, Rem};
+
 #[allow(dead_code)]
 pub(crate) fn gcd(u: i64, v: i64) -> i64 {
     // `wrapping_abs` gives a number's absolute value, unless that's 2³¹. 2³¹
@@ -44,22 +46,31 @@ pub(crate) fn lcm(u: i64, v: i64) -> i64 {
 }
 
 #[allow(dead_code)]
-pub (crate) fn polygon_area(vertices: &[(i64, i64)]) -> f64 {
+pub(crate) fn polygon_area(vertices: &[(i64, i64)]) -> f64 {
     let n = vertices.len();
     let mut sum = 0.0;
 
     for cur in 0..n {
         let next = (cur + 1) % n;
-        sum += (vertices[cur].0 as f64 * vertices[next].1 as f64) - (vertices[next].0 as f64 * vertices[cur].1 as f64);
+        sum += (vertices[cur].0 as f64 * vertices[next].1 as f64)
+            - (vertices[next].0 as f64 * vertices[cur].1 as f64);
     }
 
     0.5 * sum.abs()
 }
 
 #[allow(dead_code)]
-pub (crate) fn picks_theorem(area: f64, vertices: &[(i64, i64)]) -> u64 {
+pub(crate) fn picks_theorem(area: f64, vertices: &[(i64, i64)]) -> u64 {
     let boundary_points = vertices.len() as u64;
     let interior_points = area - (boundary_points / 2) as f64 + 1.0;
 
     interior_points as u64
+}
+
+#[allow(dead_code)]
+pub(crate) fn div_rem<T>(first: T, second: T) -> (T, T)
+where
+    T: Div<Output = T> + Rem<Output = T> + Copy,
+{
+    (first / second, first % second)
 }
