@@ -34,3 +34,12 @@ where
     }
 }
 
+#[allow(dead_code)]
+pub fn find<T>(grid: &[Vec<T>], element: &T) -> Option<(usize, usize)>
+where
+    T: PartialEq,
+{
+    grid.iter()
+        .enumerate()
+        .find_map(|(x, ve)| ve.iter().position(|n| n == element).map(|y| (x, y)))
+}
