@@ -1,7 +1,10 @@
-pub mod parse;
+#![allow(dead_code)]
+
+pub mod datastructs;
 pub mod debug;
 pub mod grid;
 pub mod math;
+pub mod parse;
 
 #[macro_export]
 macro_rules! main {

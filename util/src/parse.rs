@@ -2,7 +2,6 @@ use std::fs::File;
 use std::io;
 use std::io::prelude::*;
 
-#[allow(dead_code)]
 pub fn with_nom<F, T>(filepath: &str, parser: F) -> Result<T, Box<dyn std::error::Error>>
 where
     F: Fn(&str) -> nom::IResult<&str, T>,
@@ -23,7 +22,6 @@ where
     Ok(v)
 }
 
-#[allow(dead_code)]
 pub fn in_lines(
     path: &str,
 ) -> Result<Box<dyn Iterator<Item = String>>, Box<dyn std::error::Error>> {

@@ -1,4 +1,3 @@
-#[allow(dead_code)]
 pub fn print<T>(grid: &[Vec<T>], spacing: usize, dot: T)
 where
     T: Sized + Eq + PartialEq + std::fmt::Display,
@@ -21,7 +20,6 @@ where
     }
 }
 
-#[allow(dead_code)]
 pub fn print_grid<T>(grid: &mut [&mut [T]], spacing: usize)
 where
     T: Sized + std::fmt::Display,
@@ -34,7 +32,6 @@ where
     }
 }
 
-#[allow(dead_code)]
 pub fn find<T>(grid: &[Vec<T>], element: &T) -> Option<(usize, usize)>
 where
     T: PartialEq,

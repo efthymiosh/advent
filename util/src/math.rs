@@ -1,6 +1,5 @@
 use std::ops::{Div, Rem};
 
-#[allow(dead_code)]
 pub fn gcd(u: i64, v: i64) -> i64 {
     // `wrapping_abs` gives a number's absolute value, unless that's 2³¹. 2³¹
     // won't fit in `i64`, so it gives -2³¹ instead.
@@ -36,7 +35,6 @@ pub fn gcd(u: i64, v: i64) -> i64 {
     (u << gcd_exponent_on_two) as i64
 }
 
-#[allow(dead_code)]
 pub fn lcm(u: i64, v: i64) -> i64 {
     if u > v {
         (u / gcd(u, v)) * v
@@ -45,7 +43,6 @@ pub fn lcm(u: i64, v: i64) -> i64 {
     }
 }
 
-#[allow(dead_code)]
 pub fn polygon_area(vertices: &[(i64, i64)]) -> f64 {
     let n = vertices.len();
     let mut sum = 0.0;
@@ -59,7 +56,6 @@ pub fn polygon_area(vertices: &[(i64, i64)]) -> f64 {
     0.5 * sum.abs()
 }
 
-#[allow(dead_code)]
 pub fn picks_theorem(area: f64, vertices: &[(i64, i64)]) -> u64 {
     let boundary_points = vertices.len() as u64;
     let interior_points = area - (boundary_points / 2) as f64 + 1.0;
@@ -67,7 +63,6 @@ pub fn picks_theorem(area: f64, vertices: &[(i64, i64)]) -> u64 {
     interior_points as u64
 }
 
-#[allow(dead_code)]
 pub fn div_rem<T>(first: T, second: T) -> (T, T)
 where
     T: Div<Output = T> + Rem<Output = T> + Copy,
