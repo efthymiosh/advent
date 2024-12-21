@@ -1,6 +1,7 @@
 #![allow(dead_code)]
 
 pub mod datastructs;
+pub mod algorithms;
 pub mod debug;
 pub mod grid;
 pub mod math;
