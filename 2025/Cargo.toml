@@ -1,0 +1,12 @@
+[package]
+name = "advent2025"
+version = "0.1.0"
+rust-version = "1.83.0"
+edition = "2021"
+authors = ["efhd"]
+
+[dependencies]
+anyhow = "1.0"
+clap = { version = "4.5.53", features = ["derive"] }
+nom = "7"
+util = { path = "../util" }
