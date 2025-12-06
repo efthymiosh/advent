@@ -52,12 +52,10 @@ pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
     let v: Vec<(u64, u64)> = util::parse::with_nom(&path, parse_lists)?;
     let mut invalid_sum = 0;
     for (s, e) in v {
+        println!("Testing {s}-{e}:");
         let mut tdigits = amt_digits(s);
         let edigits = amt_digits(e);
-        println!(
-            "digits for {}-{}: start {} and end {}",
-            s, e, tdigits, edigits
-        );
+        let mut sum = 0;
         while tdigits <= edigits {
             if tdigits % 2 != 0 {
                 tdigits += 1;
@@ -71,15 +69,17 @@ pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
             let mut dupl = halftest + halftest * halfpow;
             while dupl < test_end && dupl <= e {
                 if amt_digits(dupl) % 2 == 0 && dupl >= s && dupl <= e {
-                    invalid_sum += dupl;
+                    sum += dupl;
                 }
                 halftest += 1;
                 dupl = halftest + halftest * halfpow;
             }
             tdigits += 1;
         }
-        println!("Invalid Sum: {}", invalid_sum);
+        println!("Sum for {s}-{e}: {sum}");
+        invalid_sum += sum;
     }
+    println!("Invalid Sum: {}", invalid_sum);
     Ok(())
 }
 pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
