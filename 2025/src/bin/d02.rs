@@ -60,8 +60,8 @@ fn sum_multirepeats_in_range(s: u64, e:u64, parts: u32) -> Option<u64> {
             tdigits += 1;
             continue;
         }
-        let halfpow: u64 = (10 as u64).pow(tdigits / parts);
-        let mut halftest = s % halfpow;
+        let halfpow: u64 = (10 as u64).pow(tdigits - tdigits / parts);
+        let mut halftest = s / halfpow;
         let test_end: u64 = (10 as u64).pow(tdigits + 1);
 
         let mut dupl = halftest;
@@ -71,7 +71,6 @@ fn sum_multirepeats_in_range(s: u64, e:u64, parts: u32) -> Option<u64> {
                 dupl = halftest + dupl * halfpow;
             }
             if amt_digits(dupl) % parts == 0 && dupl >= s && dupl <= e {
-                println!("Found: {dupl}");
                 invalid_sum += dupl;
             }
             halftest += 1;
