@@ -48,46 +48,14 @@ fn repeating(a: u64) -> bool {
     return false;
 }
 
-fn sum_multirepeats_in_range(s: u64, e:u64, parts: u32) -> Option<u64> {
-    let mut invalid_sum = 0;
-    let mut tdigits = amt_digits(s);
-    let edigits = amt_digits(e);
-    if parts > edigits {
-        return None
-    }
-    while tdigits <= edigits {
-        if tdigits % parts != 0 {
-            tdigits += 1;
-            continue;
-        }
-        let halfpow: u64 = (10 as u64).pow(tdigits - tdigits / parts);
-        let mut halftest = s / halfpow;
-        let test_end: u64 = (10 as u64).pow(tdigits + 1);
-
-        let mut dupl = halftest;
-        while dupl < test_end && dupl <= e {
-            dupl = halftest;
-            for _ in 1..parts {
-                dupl = halftest + dupl * halfpow;
-            }
-            if amt_digits(dupl) % parts == 0 && dupl >= s && dupl <= e {
-                invalid_sum += dupl;
-            }
-            halftest += 1;
-        }
-        tdigits += 1;
-    }
-    return Some(invalid_sum);
-}
-
 pub fn pt1(path: String) -> Result<(), Box<dyn std::error::Error>> {
     let v: Vec<(u64, u64)> = util::parse::with_nom(&path, parse_lists)?;
     let mut invalid_sum = 0;
     for (s, e) in v {
-        println!("Testing {s}-{e}:");
-        if let Some(sum) = sum_multirepeats_in_range(s, e, 2) {
-            println!("Sum for {s}-{e}: {sum}");
-            invalid_sum += sum;
+        for i in s..=e {
+            if repeating_digits(i, 2) {
+                invalid_sum += i;
+            }
         }
     }
     println!("Invalid Sum: {}", invalid_sum);
@@ -98,10 +66,10 @@ pub fn pt2(path: String) -> Result<(), Box<dyn std::error::Error>> {
     let v: Vec<(u64, u64)> = util::parse::with_nom(&path, parse_lists)?;
     let mut invalid_sum = 0;
     for (s, e) in v {
-        if let Some(sum) = sum_multirepeats_in_range(s, e, 3) {
-            println!("Testing {s}-{e}:");
-            invalid_sum += sum;
-            println!("Sum for {s}-{e}: {sum}");
+        for i in s..=e {
+            if repeating(i) {
+                invalid_sum += i;
+            }
         }
     }
     println!("Invalid Sum: {}", invalid_sum);
