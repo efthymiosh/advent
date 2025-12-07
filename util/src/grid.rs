@@ -20,6 +20,24 @@ where
     }
 }
 
+pub fn print_vec<T>(grid: &[Vec<T>], spacing: usize)
+where
+    T: Sized + Eq + PartialEq + std::fmt::Display,
+{
+    print!("{0:>1$}", ' ', spacing);
+    for i in 0..grid[0].len() {
+        print!("{0:>1$}", i, spacing);
+    }
+    println!();
+    for (idx, row) in grid.iter().enumerate() {
+        print!("{0:>1$}", idx, spacing);
+        for item in row.iter() {
+            print!("{0:>1$}", item, spacing);
+        }
+        println!();
+    }
+}
+
 pub fn print_grid<T>(grid: &mut [&mut [T]], spacing: usize)
 where
     T: Sized + std::fmt::Display,
